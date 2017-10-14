@@ -1,0 +1,14 @@
+<Bindings>
+	<Layer name="SI_KEYBINDINGS_LAYER_GENERAL">
+		<Category name="Quick Chat">
+			<Action name="QUICK_CHAT">
+				<Down>QuickChat:ShowChatMenu()</Down>  
+				<Up>QuickChat:HideMenu()</Up>  
+			</Action> 
+			<Action name="QUICK_CHAT_GROUP">
+				<Down>QuickChat:ShowGroupMenu()</Down>  
+				<Up>QuickChat:HideMenu()</Up>  
+			</Action> 
+		</Category>
+	</Layer>
+</Bindings>
