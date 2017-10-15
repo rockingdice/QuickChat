@@ -63,6 +63,7 @@ QuickChat.presets = {
 		{
 			groupName = "Dungeon",
 			chatData = {
+				"hi",
 				"ty",
 				"tyfg",
 				"gg",
@@ -72,7 +73,6 @@ QuickChat.presets = {
 				"chest",
 				"brb",
 				"afk",
-				"gtg",
 				"sorry",
 				"lag",
 				"check for food",

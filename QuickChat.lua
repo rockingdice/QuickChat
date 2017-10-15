@@ -23,6 +23,30 @@ function QuickChat.OnChatMessage(eventCode, channelType, fromName, messageText, 
 	end
 end
 
+function QuickChat.OnGroupMemberChanged(eventCode, memberName)
+ 
+	zo_callLater(function(memberName)  
+		-- If "me" join group
+		if(GetRawUnitName("player") == memberName) then 
+			-- Switch to party channel when joinin a group
+			--if db.enablepartyswitch then
+				CHAT_SYSTEM:SetChannel(CHAT_CHANNEL_PARTY)
+				CHAT_MENU_GAMEPAD:RefreshChannelDropdown(false)
+			--end
+			
+		else 
+			-- Someone else joined group 
+			 --if GetGroupSize() == 2 then
+				-- Switch to party channel when joinin a group
+				--if db.enablepartyswitch then
+					CHAT_SYSTEM:SetChannel(CHAT_CHANNEL_PARTY)
+					CHAT_MENU_GAMEPAD:RefreshChannelDropdown(false)
+				--end
+			 --end
+			 
+		end
+	end, 200) 
+end
 
 local function ShowAnnoucement(text)
 	local message = CENTER_SCREEN_ANNOUNCE:CreateMessageParams(CSA_CATEGORY_SMALL_TEXT, SOUNDS.GAMEPAD_PAGE_NAVIGATION_FAILED)
@@ -308,5 +332,6 @@ function QuickChat.cmd( text )
 	end
 end
 SLASH_COMMANDS["/qc"] = QuickChat.cmd
-EVENT_MANAGER:RegisterForEvent(QuickChat.name, EVENT_ADD_ON_LOADED, triggerAddonLoaded);   
-EVENT_MANAGER:RegisterForEvent(QuickChat.name, EVENT_CHAT_MESSAGE_CHANNEL, QuickChat.OnChatMessage);  
+EVENT_MANAGER:RegisterForEvent(QuickChat.name, EVENT_ADD_ON_LOADED, triggerAddonLoaded)
+EVENT_MANAGER:RegisterForEvent(QuickChat.name, EVENT_CHAT_MESSAGE_CHANNEL, QuickChat.OnChatMessage)
+EVENT_MANAGER:RegisterForEvent(QuickChat.name, EVENT_GROUP_MEMBER_JOINED, QuickChat.OnGroupMemberChanged)
